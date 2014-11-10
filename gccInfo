@@ -1,3 +1,14 @@
 gccInfo
 
-gcc -std=c++11 -fopenmp <projectfile> -lstdc++
+C++ 11
+	-std=c++11 
+
+OpenMP
+	-fopenmp
+
+Chrono
+	-lstdc++
+		NEEDS TO BE LAST
+
+pThreads
+	-pthread

@@ -1,0 +1,3 @@
+gccInfo
+
+gcc -std=c++11 -fopenmp <projectfile> -lstdc++

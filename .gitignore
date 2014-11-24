@@ -29,3 +29,5 @@
 
 # Custom files
 gccInfo
+exe
+.fuse*

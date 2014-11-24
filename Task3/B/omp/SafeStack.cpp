@@ -7,10 +7,10 @@ SafeStack::SafeStack() {
 }
 
 void SafeStack::push(int data) {
-	#pragma omp critical
-	{
+	//#pragma omp critical
+	//{
 		dataStack.push(data);
-	}
+	//}
 }
 
 int SafeStack::pop() {

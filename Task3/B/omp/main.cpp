@@ -1,4 +1,4 @@
-//Task 3B Multithreaded Programming 2014
+//Task 3B OMP Multithreaded Programming 2014
 //Johannes Hovland - 101028
 #include <omp.h>
 #include <stdio.h>

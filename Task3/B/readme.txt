@@ -1,3 +1,5 @@
+//Task 3B Multithreaded Programming 2014
+//Johannes Hovland - 101028
 Bug
 	segfault
 Solution

@@ -10,3 +10,9 @@ Bug
 Solution
 	check to see if stack is empty before looking at the top.
 	Return -1 if empty
+
+Bug
+	Program would not proceed to pop after having filled the stack.
+Solution
+	There was a sem_post() placed after the return statement in SafeStack::empty().
+	This took waaaaay too long to figure out.

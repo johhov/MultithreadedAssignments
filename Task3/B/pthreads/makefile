@@ -2,9 +2,9 @@
 CC = g++
 
 # Flags for the compiler
-CFLAGS = -std=c++11 -c -g -I.
+CFLAGS = -std=c++11 -c -g -fpermissive -I.
 
-LIBS = -pthread
+LIBS = -pthread -lrt
 
 # Name of the executable
 EXECUTABLE = exe

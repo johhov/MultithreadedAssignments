@@ -18,6 +18,7 @@ public:
 	void clearLock();
 
 private:
+    timespec delay;
 	std::stack<int> dataStack;
 	sem_t semLock;
 };

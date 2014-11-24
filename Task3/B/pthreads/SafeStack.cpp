@@ -5,6 +5,8 @@
 
 SafeStack::SafeStack() {
 	sem_init(&semLock, 0, 1);
+	delay.tv_sec = 0;
+	delay.tv_nsec = 100;
 }
 
 SafeStack::~SafeStack() {
@@ -20,7 +22,7 @@ void SafeStack::push(int data) {
 int SafeStack::pop() {
 	int data = -1;	//For debugging, not acceptable in production
 
-	sem_wait(&semLock);
+	sem_timedwait(&semLock, &delay);
 		if(!dataStack.empty()) {
 			data = dataStack.top();
 			dataStack.pop();

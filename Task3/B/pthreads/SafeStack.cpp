@@ -5,8 +5,6 @@
 
 SafeStack::SafeStack() {
 	sem_init(&semLock, 0, 1);
-	delay.tv_sec = 0;
-	delay.tv_nsec = 100;
 }
 
 SafeStack::~SafeStack() {
@@ -22,11 +20,10 @@ void SafeStack::push(int data) {
 int SafeStack::pop() {
 	int data = -1;	//For debugging, not acceptable in production
 
-	sem_timedwait(&semLock, &delay);
+	sem_wait(&semLock);
 		if(!dataStack.empty()) {
 			data = dataStack.top();
 			dataStack.pop();
-			printf("Pop\n");
 		}
 	sem_post(&semLock);
 
@@ -45,17 +42,21 @@ int SafeStack::top() {
 }
 
 bool SafeStack::empty() {
+	bool temp = true;
+
 	sem_wait(&semLock);
-		return dataStack.empty();
+		temp = dataStack.empty();
 	sem_post(&semLock);
+
+	return temp;
 }
 
 int SafeStack::size() {
-	sem_wait(&semLock);
-		return dataStack.size();
-	sem_post(&semLock);
-}
+	int temp = -1;
 
-void SafeStack::clearLock() {
+	sem_wait(&semLock);
+		temp = dataStack.size();
 	sem_post(&semLock);
+
+	return temp;
 }

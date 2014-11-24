@@ -22,7 +22,7 @@ void wait(int ms) {
 }
 
 void pushStack(ThreadData* threadData) {
-	// Push ITEMS ints to the stack. The ints are sequensial starting at threadNmber * ITEMS.
+	// Push ITEMS ints to the stack. The ints are sequensial starting at threadNumber * ITEMS.
 	for (int i = threadData->threadNumber * ITEMS; i < ((threadData->threadNumber * ITEMS) + ITEMS); i++) {
 		threadData->safeStack->push(i);
 	}
@@ -30,8 +30,6 @@ void pushStack(ThreadData* threadData) {
 
 void popStack(ThreadData* threadData) {
 	int temp;
-
-	printf("Thread %d ready to pop!\n", threadData->threadNumber);
 
 	while(!threadData->safeStack->empty()) {
 		temp = threadData->safeStack->pop();
@@ -41,8 +39,6 @@ void popStack(ThreadData* threadData) {
 		} else {
 			printf("%d\n", temp);
 		}
-
-		wait(20);
 	}
 }
 
@@ -81,7 +77,7 @@ int main (int argc, char* argv[]) {
 	
 	pthread_barrier_wait(&syncPush);
 	assert(safeStack.size() == (THREADS*ITEMS));
-	printf("Finished pushing %d items\n", THREADS*ITEMS);
+	printf("Finished pushing %d items.\n", THREADS*ITEMS);
 	pthread_barrier_wait(&syncPop);
 
 	for (int i = 0; i < THREADS; i++) {
@@ -89,8 +85,6 @@ int main (int argc, char* argv[]) {
 	}
 
 	assert(safeStack.empty());
-
-	printf("Woop woop!\n");
 
 	return 0;
 }

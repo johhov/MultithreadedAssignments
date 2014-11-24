@@ -15,10 +15,8 @@ public:
 	int top();
 	bool empty();
 	int size();
-	void clearLock();
 
 private:
-    timespec delay;
 	std::stack<int> dataStack;
 	sem_t semLock;
 };

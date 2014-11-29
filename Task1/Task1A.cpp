@@ -1,6 +1,5 @@
 //Task 1A Multithreaded Programming 2014
 //Johannes Hovland - 101028
-
 #include <ctime>
 #include <chrono>
 #include <stdio.h>

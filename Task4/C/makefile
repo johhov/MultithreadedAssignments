@@ -4,7 +4,7 @@ CC = g++
 # Flags for the compiler
 CFLAGS = -std=c++11 -c -g -I.
 
-LIBS = -pthread -fopenmp
+LIBS = -pthread
 
 # Name of the executable
 EXECUTABLE = exe

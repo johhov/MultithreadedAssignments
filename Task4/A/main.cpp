@@ -39,7 +39,7 @@ void popStack(ThreadData* threadData) {
 	}
 }
 
-void *processData(ThreadData* threadData) {
+void processData(ThreadData* threadData) {
 	pushStack(threadData);
 
 	waitForProduction--;

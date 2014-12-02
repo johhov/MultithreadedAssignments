@@ -35,7 +35,7 @@ int SafeQueue::front() {
 
 	int data = -1;	//For debugging, not acceptable in production
 
-	if(!dataQueue.empty()){
+	if(!dataQueue.empty()) {
 		data =  dataQueue.front();
 	}
 	
@@ -47,7 +47,7 @@ int SafeQueue::back() {
 
 	int data = -1;	//For debugging, not acceptable in production
 
-	if(!dataQueue.empty()){
+	if(!dataQueue.empty()) {
 		data =  dataQueue.back();
 	}
 	

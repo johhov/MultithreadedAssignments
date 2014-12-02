@@ -9,8 +9,6 @@
 #include <mutex>
 #include <condition_variable>
 
-#include <assert.h>
-
 #include "Callbacks.hpp"
 
 class InputHandler {

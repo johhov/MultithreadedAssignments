@@ -1,4 +1,4 @@
-//Task 5A Multithreaded Programming 2014
+//Task 5B Multithreaded Programming 2014
 //Johannes Hovland - 101028
 #pragma once
 

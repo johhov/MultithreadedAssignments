@@ -4,26 +4,24 @@
 
 #include <string>
 #include <thread>
-#include <mutex>
-#include <condition_variable>
+
+#include "Barrier.hpp"
 
 class LogicHandler {
 public:
 	LogicHandler(	bool* running,
 					std::string* callbackString,
 					int* callbackStringLength,
-					std::mutex* lock,
-					std::condition_variable* newInput,
-					std::condition_variable* newLength);
+					Barrier* newInput,
+					Barrier* newLength);
 	~LogicHandler();
 
 	void run();
 private:
 	//External
 	bool* running;
-	std::mutex* lock;
-	std::condition_variable* newInput;
-	std::condition_variable* newLength;
+	Barrier* newInput;
+	Barrier* newLength;
 
 	std::string* callbackString;
 	int* callbackStringLength;

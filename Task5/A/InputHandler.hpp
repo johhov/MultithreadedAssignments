@@ -6,23 +6,26 @@
 #include <stdio.h>
 #include <iostream>
 #include <thread>
-#include <mutex>
-#include <condition_variable>
 
+#include "Barrier.hpp"
 #include "Callbacks.hpp"
 
 class InputHandler {
 public:
 	InputHandler(	bool* running,
 					std::string* callbackString,
-					std::condition_variable* newInput);
+					Barrier* newInput,
+					Barrier* finishedOutput);
 	~InputHandler();
 
 	void run();
+	bool checkForInputError(char charInput);
+	bool runCallback(int intInput);
 private:
 	//External
 	bool* running;
-	std::condition_variable* newInput;
+	Barrier* newInput;
+	Barrier* finishedOutput;
 
 	std::string* callbackString;
 

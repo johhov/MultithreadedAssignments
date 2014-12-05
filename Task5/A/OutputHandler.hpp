@@ -5,24 +5,24 @@
 #include <string>
 #include <iostream>
 #include <thread>
-#include <mutex>
-#include <condition_variable>
+
+#include "Barrier.hpp"
 
 class OutputHandler {
 public:
 	OutputHandler(	bool* running,
 					std::string* callbackString,
 					int* callbackStringLength,
-					std::mutex* lock,
-					std::condition_variable* newLength);
+					Barrier* newLength,
+					Barrier* finishedOutput);
 	~OutputHandler();
 
 	void run();
 private:
 	//External
 	bool* running;
-	std::mutex* lock;
-	std::condition_variable* newLength;
+	Barrier* newLength;
+	Barrier* finishedOutput;
 
 	std::string* callbackString;
 	int* callbackStringLength;

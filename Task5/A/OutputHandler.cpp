@@ -5,13 +5,13 @@
 OutputHandler::OutputHandler(	bool* running,
 								std::string* callbackString,
 								int* callbackStringLength,
-								std::mutex* lock,
-								std::condition_variable* newLength) {
+								Barrier* newLength,
+								Barrier* finishedOutput) {
 	this->running = running;
 	this->callbackString = callbackString;
 	this->callbackStringLength = callbackStringLength;
-	this->lock = lock;
 	this->newLength = newLength;
+	this->finishedOutput= finishedOutput;
 }
 
 OutputHandler::~OutputHandler() {
@@ -20,13 +20,15 @@ OutputHandler::~OutputHandler() {
 
 void OutputHandler::run() {
 	while(*running) {
-		std::unique_lock<std::mutex> lLock((*this->lock));
-		newLength->wait(lLock);
+		newLength->wait();
 		
 		if(!(*running)) {
 			break;
 		}
 		
 		std::cout << *callbackString << ", " << *callbackStringLength << std::endl;
-	}	
+		finishedOutput->signal();
+	}
+
+	finishedOutput->signal();
 }

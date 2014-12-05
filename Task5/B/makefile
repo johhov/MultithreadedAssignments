@@ -10,7 +10,7 @@ LIBS = -pthread
 EXECUTABLE = exe
 
 # Source files
-SOURCES = main.cpp InputHandler.cpp LogicHandler.cpp OutputHandler.cpp Callbacks.cpp Barrier.cpp
+SOURCES = main.cpp Callbacks.cpp
 
 # The objects
 OBJECTS = $(SOURCES:.cpp=.o)

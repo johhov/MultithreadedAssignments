@@ -5,13 +5,11 @@
 LogicHandler::LogicHandler(	bool* running,
 							std::string* callbackString,
 							int* callbackStringLength,
-							std::mutex* lock,
-							std::condition_variable* newInput,
-							std::condition_variable* newLength) {
+							Barrier* newInput,
+							Barrier* newLength) {
 	this->running = running;
 	this->callbackString = callbackString;
 	this->callbackStringLength = callbackStringLength;
-	this->lock = lock;
 	this->newInput = newInput;
 	this->newLength = newLength;
 }
@@ -22,16 +20,15 @@ LogicHandler::~LogicHandler() {
 
 void LogicHandler::run() {
 	while(*running) {
-		std::unique_lock<std::mutex> lock((*this->lock));
-		newInput->wait(lock);
+		newInput->wait();
 
 		if(!(*running)) {
 			break;
 		}
 
 		*callbackStringLength = callbackString->length();
-		newLength->notify_all();
+		newLength->signal();
 	}
 
-	newLength->notify_all();
+	newLength->signal();
 }
